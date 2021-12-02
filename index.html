@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <div class="container header__body">
+            <div class="logo">
+                <img src="img/brain_games_icon.png" class="logo__img" alt="">
+                <p class="logo__text">Memory Card</p>
+            </div>
+            <nav class="header__menu">
+                <button class="header__button button show-levels">Levels</button>
+            </nav>
+        </div>
+    </div>
+    <div class="container content">
+        <div class="game-mode">
+            <button class="game-mode__button button active">Singleplayer</button>
+            <button class="game-mode__button button">Multiplayer</button>
+        </div>
+        <div class="levels">
+            <p class="levels__title">Levels</p>
+            <div class="level block" data-level="1" data-table="3x4">
+                <p class="level__name">1</p>
+                <p class="level__card-count">Cards 4x3</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="2" data-table="4x4">
+                <p class="level__name">2</p>
+                <p class="level__card-count">Cards 4x4</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="3" data-table="5x4">
+                <p class="level__name">3</p>
+                <p class="level__card-count">Cards 5x4</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="4" data-table="6x4">
+                <p class="level__name">4</p>
+                <p class="level__card-count">Cards 6x4</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="5" data-table="6x5">
+                <p class="level__name">5</p>
+                <p class="level__card-count">Cards 6x5</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="6" data-table="6x6">
+                <p class="level__name">6</p>
+                <p class="level__card-count">Cards 6x6</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+            <div class="level block" data-level="7" data-table="6x7">
+                <p class="level__name">7</p>
+                <p class="level__card-count">Cards 6x7</p>
+                <div class="level__stars block-img">
+                </div>
+                <div class="levels__img_play"></div>
+            </div>
+        </div>
+        <div class="game hide">
+            <p class="game__level">Level 1</p>
+            <table>
+                <tbody>
+                </tbody>
+                <tfoot class="table__wrap"></tfoot>
+            </table>
+            <div class="game__info block">
+                <div class="game__moves">
+                    <p class="game__value">0</p>
+                    <p class="game__subtitle">Moves</p>
+                </div>
+                <div class="game__rounds">
+                    <p class="game__value">0</p>
+                    <p class="game__subtitle">Rounds Played</p>
+                </div>
+                <div class="game__points">
+                    <p class="game__value">0</p>
+                    <p class="game__subtitle">Memory Points</p>
+                </div>
+                <div class="game__speed">
+                    <div>
+                        <button class="game__button-speed" data-speed='20'>.5x</button>
+                        <button class="game__button-speed active" data-speed="10">1x</button>
+                        <button class="game__button-speed" data-speed="5">2x</button>
+                    </div>
+                    <p class="game__subtitle">Speed</p>
+                </div>
+                <div class="game__card-numbered">
+                    <label class="switch">
+                        <input type="checkbox" class="switch__input">
+                        <span class="switch__slider_round"></span>
+                    </label>
+                    <p class="game__subtitle">Numbered Cards</p>
+                </div>
+                <div class="game__restart">
+                    <div class="game__img_restart"></div>
+                    <div class="game__subtile">Restart</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-wrap hide"></div>
+    <div class="window-win hide">
+        <h1></h1>
+        <div class="window-win__stars block-img"></div>
+        <p class="window-win__text">
+        </p>
+        <button class="window-win__button">OK</button>
+    </div>
+    <div class="window-multiplayer hide block">
+        <p class="window-multiplayer__text"></p>
+        <p class="window-multiplayer__time">10</p>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
