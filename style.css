@@ -372,7 +372,7 @@ tbody {
     height: 100%;
     transition: .3s;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     box-sizing: border-box;
 }
 
@@ -403,7 +403,6 @@ tbody {
     margin-bottom: 5px;
     transition: .5s ease;
     cursor: pointer;
-  
 }
 
 .game__button-speed:hover {
@@ -439,7 +438,6 @@ tbody {
 .game__img_restart:hover {
     transform: translateY(-2px);
 }
-
 
 .modal-wrap {
     width: 100%;
@@ -519,4 +517,84 @@ tbody {
 
 .window-multiplayer__time {
     font-size: 1.2rem;
+}
+
+@media (max-width:1200px) {
+    .container {
+        max-width: 900px;
+    }
+
+    .card__number {
+        font-size: 1rem;
+    }
+}
+
+
+
+@media (max-width:992px) {
+    .container {
+        max-width: 700px;
+    }
+}
+
+
+@media (max-width:767px) {
+    .container {
+        max-width: 100%;
+    }
+    html {
+        font-size: 14px;
+    }
+
+    .logo__text {
+        display: none;
+    }
+
+    .level {
+        padding: 10px 20px;
+    }
+    
+    .level__name {
+        margin-right: 20px;
+        font-size: 2.5rem;
+    }
+
+    .level__stars {
+        margin-right: 10px;
+    }
+
+    .levels__img_play {
+        width: 50px;
+        height: 50px;
+    }
+
+    .game__info {
+        display: block;
+        font-size: 1rem;
+    }
+    
+    .game__info div {
+        margin-bottom: 15px;
+    }
+
+    .game__value {
+        font-size: 1.5rem;
+    }
+
+    .game__restart {
+        margin: 10px auto;
+    }
+
+    .window-win {
+        width: 90%;
+        padding: 30px 10px;
+    }
+
+    .window-win h1 {
+        font-size: 2rem;
+    }
+
+    .window-multiplayer {
+        width: 90%;
+    }
 }

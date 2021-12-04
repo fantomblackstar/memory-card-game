@@ -112,11 +112,16 @@ async function startGame() {
     tableSize = this.dataset.table.split('x');
     findedCards = currentMoves = 0;
     createTable(tableSize[0], tableSize[1]);
+    setGameInfo();
+    timeStarted = new Date().getTime();
+}
+
+function setGameInfo () {
     document.querySelector('.game__level').textContent = `Level ${currentLevel}`;
     document.querySelector('.game__rounds').children[0].textContent = `${levelsRounds[currentLevel]}`;
     document.querySelector('.game__moves').children[0].textContent = `${currentMoves}`;
     document.querySelector('.game__points').children[0].textContent = memoryPoint;
-    timeStarted = new Date().getTime();
+    document.querySelector('.switch__input').checked = false;
 }
 
 function createTable(n, m) {
@@ -148,7 +153,6 @@ function createTable(n, m) {
     }
     usedImages = [];
 }
-
 
 function createCard() {
     let cardNum = document.createElement('div');
@@ -202,11 +206,23 @@ function endGame() {
     Moves: ${currentMoves}<br/>Time: ${Math.floor(timePlayed / 60)}:${(timePlayed % 60).toString().padStart(2,'0')}`;
     let winAudio = new Audio('audio/win-applause-sound.wav');
     winAudio.play();
+    completedLevelStyle();
+}
+
+function completedLevelStyle () {
     const levelBlock = document.querySelector(`.level[data-level='${currentLevel}']`);
     levelBlock.style.backgroundColor = '#daffd4';
     levelBlock.children[3].style.backgroundImage = 'url("img/check_icon.png")';
-    levelBlock.children[3].style.width = levelBlock.children[3].style.height = '60px';
-    levelBlock.children[3].style.marginRight = '8px';
+    if(window.matchMedia("(max-width: 767px)").matches){
+        levelBlock.children[3].style.width = levelBlock.children[3].style.height = '40px';
+        levelBlock.children[3].style.marginRight = '6px';
+        levelBlock.style.padding = '15px 20px';
+    }
+    else {
+        levelBlock.children[3].style.width = levelBlock.children[3].style.height = '60px';
+        levelBlock.children[3].style.marginRight = '8px';
+    }
+   
     addStarsRange.call(document.querySelector(`.level[data-level='${currentLevel}']`).children[2]);
 }
 
@@ -229,12 +245,6 @@ function loseMultiplayerGame(data){
     loseAudio.play();
 }
 
-document.querySelector('.window-win__button').onclick = () => {
-    modalWrap.classList.add('hide');
-    document.querySelector('.window-win').classList.add('hide');
-    showLevels();
-}
-
 function rundomizeArrayElements(array) {
     let currentIndex = array.length, randomIndex;
     while (currentIndex != 0) {
@@ -244,9 +254,6 @@ function rundomizeArrayElements(array) {
     }
     return array;
 }
-
-
-document.querySelector('.show-levels').onclick = showLevels;
 
 function showLevels() {
     tableBody.innerHTML = '';
@@ -332,9 +339,9 @@ function checkingMultiplayerEndGame() {
     }, 1000);
 }
 
-document.querySelector('.switch__input').onclick = () => {
+function showNumbers(){
     for (let elem of document.querySelectorAll('.card__number')) {
-        +elem.style.opacity ? elem.style.opacity = '0' : elem.style.opacity = '1';
+        document.querySelector('.switch__input').checked? elem.style.opacity = '1' : elem.style.opacity = '0';
     }
 }
 
@@ -344,15 +351,13 @@ function restartGame(){
     document.querySelector('.game__rounds').children[0].textContent = `${levelsRounds[currentLevel]}`;
     createTable(tableSize[0], tableSize[1]);
     movesBlock.textContent = '0';
+    showNumbers();
 }
-
-document.querySelector('.game__img_restart').addEventListener('click', restartGame);
 
 const delay = (ms) => {
     const startPoint = new Date().getTime()
     while (new Date().getTime() - startPoint <= ms) {/* wait */ }
 }
-
 
 async function postData(url, data, func) {
     data['func'] = func;
@@ -367,4 +372,30 @@ async function postData(url, data, func) {
         body: JSON.stringify(data)
     });
     return response;
+}
+
+document.querySelector('.show-levels').onclick = showLevels;
+
+document.querySelector('.switch__input').onclick = showNumbers;
+
+document.querySelector('.game__img_restart').addEventListener('click', restartGame);
+
+document.querySelector('.window-win__button').onclick = () => {
+    modalWrap.classList.add('hide');
+    document.querySelector('.window-win').classList.add('hide');
+    showLevels();
+}
+
+function playGame(){
+    let cardsArr = Array.from(document.querySelectorAll('.card'));
+    cardsArr.sort((a,b) => +a.dataset.imageid - (+b.dataset.imageid));
+    let count = 0;
+    let interval = setInterval(() => {
+        if(count === cardsArr.length) clearInterval(interval);
+        cardsArr[count].click();
+        setTimeout(() => {
+            cardsArr[count + 1].click();
+            count += 2;
+        },750)
+    },1500)
 }
